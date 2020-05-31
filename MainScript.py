@@ -154,6 +154,7 @@ def allcall(players, playerCount=0):
     PROCEDURAL THROUGHOUT FOR CHECKING BUST OR NOT
     returns a value if not for busting or winning
     """
+    #FOR ALL PLAYERS
     if(playerCount>0):
         for i in range(playerCount):
             players[i].set_in_hand_value(players[i].cardsInHand)
@@ -169,6 +170,7 @@ def allcall(players, playerCount=0):
                 players.pop(i)
             else:
                 players[i].nextcall = "PROCEED"
+    #FOR SINGLE PLAYER
     else:
         players.set_in_hand_value(players.cardsInHand)
             
@@ -186,6 +188,8 @@ def allcall(players, playerCount=0):
 
 
 
+
+#MAIN FUNCTION
 
 
 print("Welcome TO Blackjack!\n")
@@ -222,7 +226,7 @@ for i in range(playerCount):
 
 allcall(players,playerCount) #CHECK
 
-
+#FOR DOING A HIT OR STAY AND GO ACROSS THE TABLE FOR ALL PLAYERS
 for i in range(len(players)):
     if(players[i].nextcall == "PROCEED"):
         response = input(f"\n{players[i].name} >< Do You Want TO HIT OR STAY? : ")
@@ -236,12 +240,15 @@ for i in range(len(players)):
                 break
             response = input(f"\n{players[i].name} >< Do You Want TO HIT OR STAY? : ")
 
+#CREATING A NEW LIST AND THROWING OUT ALL THE PLAYERS WHO BUSTED
 finalplayers = []
 for i in range(len(players)):
     if(players[i].nextcall == "OUT"):
         continue
     else:
         finalplayers.append(players[i])
+
+#CHECKS IF THERE ARE PLAYERS OR NOT
 if(len(finalplayers) == 0):
     print("NO MORE PLAYERS LEFT :/")
 
@@ -258,6 +265,7 @@ else:
         print("DEALER BUSTED! ALL PLAYERS GET 2X THE BET AMOUNT")
         for i in range(len(finalplayers)):
             print(f"{finalplayers[i].name} <> YOUR FINAL AMOUNT : {finalplayers[i].betMoney*2} ")
+    #DEALER HITS UNTIL HIS HAND BECOMES 17 OR HIGHER
     else:
         while(mainDealer.cardValue<17):
             uCardSet = mainDealer.set_dealer_cards(uCardSet)
@@ -279,28 +287,4 @@ else:
                     print(f"{finalplayers[i].name} >< SORRY YOU LOSE YOUR BET, YOUR CARD VALUE IS LOWER! : {finalplayers[i].cardValue}")
                     print("DEALER GETS YOUR MONEY :/")
 print("\n\nTHANKS FOR PLAYING!")
-print("A TEXT BASED BLACKJACK GAME BY @dBridgeDev")                 
-
-
-    
-
-
-
-
-        
-       
-
-
-
-
-        
-
-
-
-
-    
-
-
-
-
-
+print("A TEXT BASED BLACKJACK GAME BY @dBridgeDev")
