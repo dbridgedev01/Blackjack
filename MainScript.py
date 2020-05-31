@@ -230,9 +230,9 @@ allcall(players,playerCount) #CHECK
 for i in range(len(players)):
     if(players[i].nextcall == "PROCEED"):
         response = input(f"\n{players[i].name} >< Do You Want TO HIT OR STAY? : ")
-        if(response=="STAY"):
+        if(response.upper()=="STAY"):
             continue
-        while(response=="HIT"):
+        while(response.upper()=="HIT"):
             uCardSet = players[i].set_player_cards(uCardSet)
             players[i].player_print_all()
             allcall(players[i])
